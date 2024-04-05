@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
 const ContactPage = () => {
+
+  throw new Error("Bir hata oluştu");
+
   return (
     <div>
       <h1>Contact Page</h1>

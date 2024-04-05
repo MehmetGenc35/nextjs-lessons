@@ -14,12 +14,12 @@ export default function RootLayout({ children }) {
       return (
         <html lang="en" className="h-100">
             <body
-                className={`${inter.className} d-flex flex-column justify-content-between h-100`}
-            >
-                <Header />
-                <main className="flex-grow-1">{children}</main>
-                <Footer />
+                className={`${inter.className} d-flex flex-column justify-content-between h-100`}>
+                
+                {children}
+                
             </body>
         </html>
+        
     );
 }

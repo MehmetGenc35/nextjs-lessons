@@ -1,6 +1,11 @@
+import { wait } from '@/helpers/misc';
 import Link from 'next/link'
 import React from 'react'
-const AboutPage = () => {
+const AboutPage = async() => {
+
+  //bu sayfa yüklenirken 5 sn gecikecek
+  await wait(3000);
+
   return (
     <div>
       <h1>About Page</h1>
