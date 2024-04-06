@@ -60,7 +60,7 @@ const Header = () => {
                         ))}
                     </Nav>
                 </Navbar.Collapse>
-                <Link href="/dashboard">Dashboard</Link>
+
             </Container>
         </Navbar>
     );

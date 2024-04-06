@@ -1,7 +1,8 @@
 "use client"
 import { Carousel } from 'react-bootstrap'
 import slider from '@/helpers/data/slider.json'
-import styles from "./slider.scss"
+import styles from './slider.module.scss'
+import Image from 'next/image'
 
 const Slider = () => {
   return (
