@@ -4,6 +4,8 @@ import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import menuItems from "@/helpers/data/main-menu.json";
 import { usePathname, useSearchParams } from "next/navigation";
+import logo from "../../public/img/logo.png";
+import Image from "next/image";
 const Header = () => {
     //mevcut sayfanın URL'sindeki yol bilgisini döndürür. Bu sayede, sayfa içerisinde hangi 
     //yolun aktif olduğunu anlamak ve buna göre belirli işlemler yapmak için kullanılabilir.
@@ -33,13 +35,26 @@ const Header = () => {
             collapseOnSelect
         >
             <Container>
-                <Navbar.Brand href="/" as={Link}>TechnoShop</Navbar.Brand>
+                <Navbar.Brand href="/" as={Link}>
+                    <Image 
+                    src={logo} 
+                    alt="logo" 
+                    className="img-fluid"
+                    style={{height:"30px",width:"auto"}} />
+                </Navbar.Brand>
+
+
+                <Link href="/dashboard" className="order-lg-2 nav-link text-light">Dashboard</Link>
+
+
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {menuItems.map((item) => (
                             <Nav.Link href={item.url} as={Link} key={item.id}
-                            active={pathName===item.url}>
+                            active={pathName===item.url}>        
                                 {item.title}
                             </Nav.Link>
                         ))}

@@ -1,8 +1,9 @@
+import PageHeader from '@/components/page-header'
 import React from 'react'
 
 const ProductsPage = () => {
   return (
-    <div>ProductsPage</div>
+    <PageHeader title="Products"/>
   )
 }
 
