@@ -1,6 +1,11 @@
 import PageHeader from '@/components/page-header';
 import Link from 'next/link'
 import React from 'react'
+
+export const metadata = {//sayfaya özel başlık ve açıklama yazılabilir
+  title: "Contact Us",
+  description: "Contact our services",
+}
 const ContactPage = () => {
 
   //throw new Error("Bir hata oluştu");

@@ -1,7 +1,13 @@
+
+$font-family-sans-serif: var(--font-roboto);//bootstrap fontunu ezdik
 @import "bootstrap/scss/bootstrap.scss";
 
 
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show {
     color: red;
+}
+
+h1,h2,h3{
+    font-family: var(--font-montserrat-subrayada);//font variable ismini kullanarak belirli yerlerin fontlarını değiştirebiliyoruz
 }

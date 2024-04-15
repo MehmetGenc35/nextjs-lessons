@@ -4,6 +4,11 @@ import React from 'react'
 import Image from 'next/image'
 import natureImg from '../../../../public/img/nature.jpg'
 import PageHeader from '@/components/page-header';
+
+export const metadata = {//sayfaya özel başlık ve açıklama yazılabilir
+  title: "About Us",
+  description: "About our services",
+}
 const AboutPage = async() => {
 
   //bu sayfa yüklenirken  3sn gecikecek

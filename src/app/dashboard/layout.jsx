@@ -1,7 +1,11 @@
 
 import DashboardHeader from "@/components/dashboard-header"
-import DashboardMenu from "@/components/dashboard-menu"
 import { Col, Container, Nav, Row } from "react-bootstrap"
+
+export const metadata = {//sayfaya özel başlık ve açıklama yazılabilir
+  title: "Dashboard",
+  description: "Dashboard page",
+}
 
 
 const DashboardLayout = ({children}) => {
