@@ -6,7 +6,7 @@ import "./product-card.scss"
 import { useRouter } from "next/navigation";
 import FlexImage from "./flex-image";
 
-const ProductCard = ({ id, name, price, image }) => {
+const ProductCard = ({ id, title, price, image }) => {
 	const router = useRouter();
 
 	const handleClick = () => {
@@ -15,10 +15,10 @@ const ProductCard = ({ id, name, price, image }) => {
 	
 	return (
 		<Card className="product-card" onClick={handleClick}>
-			<FlexImage src={image} alt={name} width="100%" height="250px" />
+			<FlexImage src={image} alt={title} width="100%" height="250px" />
 			
 			<Card.Body>
-				<Card.Title>{name}</Card.Title>
+				<Card.Title>{title}</Card.Title>
 				<Card.Subtitle>
 					<Badge>{price}</Badge>
 				</Card.Subtitle>

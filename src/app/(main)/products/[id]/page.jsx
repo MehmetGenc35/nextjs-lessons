@@ -28,7 +28,7 @@ const ProductDetailPage = async({params}) => {
   if(!productId) throw new Error("ProductId missing"); //hata fırlarsa en yakın error.jsx yakalayacak
   
   const res=await fetch(`${config.apiURL}/products/${productId}`);
-  if(!res.ok) NotFound();
+  if(!res.ok) notFound();
   const product = await res.json();//data elimiz e gelmiş oldu
 
 

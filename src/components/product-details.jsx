@@ -5,7 +5,7 @@ import FlexImage from './flex-image';
 
 const ProductDetails = ({product}) => {
 
-    const {title, price, sku, description, image} = product;
+    const {title, price, category, description, image} = product;
 
 
   return (
@@ -18,7 +18,7 @@ const ProductDetails = ({product}) => {
             <p>{description}</p>
             <h4 className="d-flex justify-content-between">
                 <Badge bg="warning">${price}</Badge>
-                <Badge>{sku}</Badge>
+                <Badge>{category}</Badge>
                 
             </h4>
         </Col>
