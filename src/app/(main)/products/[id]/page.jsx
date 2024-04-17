@@ -1,12 +1,25 @@
+import React from "react";
+import { notFound } from "next/navigation";
 import PageHeader from "@/components/page-header";
-import ProductDetails from "@/components/product-details";
 import { config } from "@/helpers/config";
-import { notFound as NotFound } from "next/navigation"
+import ProductDetails from "@/components/product-details";
+import Spacer from "@/components/spacer";
 
-export const metadata={
-  title:"Product Details",
-  description:"Product Details Page"
-}
+//ilk olarak params ile gelen idyi alıyoruz
+//id ile backende bağlanıp ürün bilgilerini alıyoruz
+//description ve title bilgilerini destruction yaparak alıyoruz
+//dinamik metadata ya bilgileri yerleştiriyoruz
+
+export const generateMetadata = async ({ params }) => {
+    const productId = params.id;
+    const res = await fetch(`${config.apiURL}/products/${productId}`);
+    const product = await res.json();
+    const { title, description } = product;
+    return {
+        title,
+        description,
+    };
+};
 
 const ProductDetailPage = async({params}) => {
 
@@ -23,7 +36,9 @@ const ProductDetailPage = async({params}) => {
   return (
     <>
       <PageHeader title="Product Details"/>
+      <Spacer/>
       <ProductDetails product={product}/>
+      <Spacer/>
     </>
   )
 }

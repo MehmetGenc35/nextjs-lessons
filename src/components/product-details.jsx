@@ -1,11 +1,11 @@
-import Image from 'next/image';
+
 import React from 'react'
 import { Badge, Col, Row } from 'react-bootstrap'
 import FlexImage from './flex-image';
 
 const ProductDetails = ({product}) => {
 
-    const {title, price, category, description, image} = product;
+    const {title, price, sku, description, image} = product;
 
 
   return (
@@ -16,9 +16,10 @@ const ProductDetails = ({product}) => {
         <Col md={6}>
             <h1>{title}</h1>
             <p>{description}</p>
-            <h4>
-                <Badge>{price}</Badge>
-                <Badge>{category}</Badge>
+            <h4 className="d-flex justify-content-between">
+                <Badge bg="warning">${price}</Badge>
+                <Badge>{sku}</Badge>
+                
             </h4>
         </Col>
         
