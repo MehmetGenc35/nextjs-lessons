@@ -4,6 +4,7 @@ import PageHeader from "@/components/page-header";
 import { config } from "@/helpers/config";
 import ProductDetails from "@/components/product-details";
 import Spacer from "@/components/spacer";
+import ProductsInSameCategory from "@/components/products-in-same-category";
 
 //ilk olarak params ile gelen idyi alıyoruz
 //id ile backende bağlanıp ürün bilgilerini alıyoruz
@@ -25,11 +26,15 @@ const ProductDetailPage = async({params}) => {
 
   const productId = params.id;//[id] dinamik raouter ismi id olduğu için onun oradan karşılıyoruz
 
-  if(!productId) throw new Error("ProductId missing"); //hata fırlarsa en yakın error.jsx yakalayacak
-  
-  const res=await fetch(`${config.apiURL}/products/${productId}`);
-  if(!res.ok) notFound();
-  const product = await res.json();//data elimiz e gelmiş oldu
+    const fetchProduct = (
+        await fetch(`${config.apiURL}/products/${productId}`)
+    ).json();
+    const fetchProducts = (await fetch(`${config.apiURL}/products`)).json();
+    const [product, products] = await Promise.all([
+        fetchProduct,
+        fetchProducts,
+    ]);
+    if (!product) notFound();
 
 
 
@@ -38,6 +43,8 @@ const ProductDetailPage = async({params}) => {
       <PageHeader title="Product Details"/>
       <Spacer/>
       <ProductDetails product={product}/>
+      <Spacer/>
+      <ProductsInSameCategory products={products}/>
       <Spacer/>
     </>
   )
