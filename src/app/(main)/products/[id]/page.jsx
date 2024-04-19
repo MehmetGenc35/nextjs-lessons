@@ -26,15 +26,12 @@ const ProductDetailPage = async({params}) => {
 
   const productId = params.id;//[id] dinamik raouter ismi id olduğu için onun oradan karşılıyoruz
 
-    const fetchProduct = (
-        await fetch(`${config.apiURL}/products/${productId}`)
-    ).json();
+    const fetchProduct = (await fetch(`${config.apiURL}/products/${productId}`)).json();
     const fetchProducts = (await fetch(`${config.apiURL}/products`)).json();
-    const [product, products] = await Promise.all([
-        fetchProduct,
-        fetchProducts,
-    ]);
+    const [product, products] = await Promise.all([fetchProduct, fetchProducts,]);
     if (!product) notFound();
+
+   
 
 
 

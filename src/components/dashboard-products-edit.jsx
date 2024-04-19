@@ -17,7 +17,7 @@ const DashboardProductsEdit = ({ product }) => {
             <Form.Group className="mb-3">
                 <Form.Label>Category</Form.Label>
                 <Form.Select defaultValue={product.category}>
-                    <option>Select</option>
+                    
                     <option value="Home">Home</option>
                     <option value="Computers">Computers</option>
                     <option value="Clothing">Clothing</option>
@@ -34,6 +34,7 @@ const DashboardProductsEdit = ({ product }) => {
                 <Form.Label>Image</Form.Label>
                 <InputGroup>
                     <Form.Select defaultValue={imageUrl.origin}>
+                        
                         <option value="https://images.pexels.com">
                             Pexels
                         </option>
