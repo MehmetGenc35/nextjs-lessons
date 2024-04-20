@@ -1,6 +1,7 @@
 
 $font-family-sans-serif: var(--font-roboto);//bootstrap fontunu ezdik
 @import "bootstrap/scss/bootstrap.scss";
+@import 'sweetalert2/src/sweetalert2';
 
 
 .navbar-nav .nav-link.active,
