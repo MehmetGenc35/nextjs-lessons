@@ -34,4 +34,4 @@ const DashboardProducts = ({ products }) => {
 	);
 };
 
-export default DashboardProducts;
+export default DashboardProducts; 

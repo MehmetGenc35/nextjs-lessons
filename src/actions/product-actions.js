@@ -18,6 +18,9 @@ const FormSchema = Yup.object({
 	imageBaseUrl: Yup.string().required("Required"),
 	image: Yup.string().required("Required"),
 });
+
+const CreateSchema = FormSchema.omit(["id"]); //id bilgisini create de görmezden gel
+
 //2.şart async yapılmalı
 export const createProductAction = async(prewState, formData) => { 
     //formData nın json formatına dönüştürülmesi gerekir
@@ -102,20 +105,25 @@ export const updateProductAction = async (prvState, formData) => {
 
 
 export const deleteProductAction = async (id) => {
-    try {
-        if (!id) throw new Error("Id is missing");
-        const res = await fetch(`${config.apiURL}/products/${id}`, {
-            method: "delete",
-        });
-        if (!res.ok) {
-            throw new Error("Somethong went wrong");
-        }
-        revalidatePath("/products");
-        revalidatePath("/dashboard/products");
-    } catch (err) {
-        return {
-            message: err.message,
-        };
-    }
-    redirect("/dashboard/products");
+	try {
+		if (!id) throw new Error("Id is missing");
+
+		const res = await fetch(`${config.apiURL}/products/${id}`, {
+			method: "delete",
+		});
+
+		if (!res.ok) {
+			throw new Error("Somethong went wrong");
+		}
+
+		revalidatePath("/products");
+		revalidatePath("/dashboard/products");
+	} catch (err) {
+		return {
+			ok: false,
+			message: err.message,
+		};
+	}
+
+	redirect("/dashboard/products");
 };
