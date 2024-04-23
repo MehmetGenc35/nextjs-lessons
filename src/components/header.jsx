@@ -6,6 +6,7 @@ import menuItems from "@/helpers/data/main-menu.json";
 import { usePathname, useSearchParams } from "next/navigation";
 import logo from "../../public/img/logo.png";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 const Header = () => {
     //mevcut sayfanın URL'sindeki yol bilgisini döndürür. Bu sayede, sayfa içerisinde hangi 
     //yolun aktif olduğunu anlamak ve buna göre belirli işlemler yapmak için kullanılabilir.
@@ -27,6 +28,12 @@ const Header = () => {
     //className="order-2"==> öğelerin gösterim sırasını belirlemek için kullanılır
 
 
+
+    //!SESSİON A ULAŞMA
+    const { data: session } = useSession();
+    //userın login olup olmadığı bilgisine ulasmak için kullanılır
+    //data içindeki keywordun ismi biz onu session ismiyle kullanmak için data:session şeklinde kullandık
+
     return (
         <Navbar
             expand="lg"
@@ -44,7 +51,21 @@ const Header = () => {
                 </Navbar.Brand>
 
 
-                <Link href="/dashboard" className="order-lg-2 nav-link text-light">Dashboard</Link>
+                {session ? (
+                    <Link
+                        href="/dashboard"
+                        className="order-lg-2 nav-link text-light"
+                    >
+                        Dashboard
+                    </Link>
+                ) : (
+                    <Link
+                        href="/api/auth/signin"
+                        className="order-lg-2 nav-link text-light"
+                    >
+                        Login
+                    </Link>
+                )}
 
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -11,7 +11,7 @@ const config = {
         Google,
         Credentials({
             credentials: {
-                username: { label: "Username"},
+                username: { label: "Username"}, //atuny0   9uQFF1Lh
                 password: { label: "Password", type: "password" },
             },
             authorize: async (credentials) => {//kullancı bilgileri nerde saklanıyorsa kontrol bu aşamada olacak
@@ -31,14 +31,21 @@ const config = {
     //burada roller ve rollerin kullanabileceği kısımlar tanımlanır
     callbacks: { 
         authorized({ request, auth }) {
-            console.log("request", request);
-            console.log("auth", auth);
-            const { pathname } = request.nextUrl;
-            
-            if (pathname.startsWith("/dashboard")) return !!auth;
+            const { pathname, searchParams } = request.nextUrl;
+            const isUserLoggedIn = !!auth;
+            const isUserInLoginPage = pathname === "/login";
+            if(isUserLoggedIn && isUserInLoginPage){
+                const callbackURL = searchParams.get("callbackUrl") || "/dashboard";
+                const url = new URL(callbackURL, request.nextUrl)
+                return Response.redirect(url);
+            }
+            if (pathname.startsWith("/dashboard")) return isUserLoggedIn;
             return true;
         },
     },
+    pages: {
+        signIn: "/login",
+    }
 };
 export const { handlers, signIn, signOut, auth } = NextAuth(config);
 

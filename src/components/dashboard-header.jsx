@@ -1,14 +1,22 @@
-"use client"
+"use client";
 import React from "react";
 import { Navbar, Container, Offcanvas, Nav } from "react-bootstrap";
 import menuItems from "@/helpers/data/dashboard-menu.json";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Swal from "sweetalert2";
+import { signOut } from "next-auth/react";
 const DashboardHeader = () => {
-    const pathName = usePathname();
-
-    //expand="none"==> hamburger ikonu sürekli gözüksün
-
+    const pathname = usePathname();
+    const handleLogout = async () => {
+        const answer = await Swal.fire({
+            title: "Are you sure to logout?",
+            showCancelButton: true,
+            confirmButtonText: "Logout",
+        });
+        if (!answer.isConfirmed) return;
+        signOut({ callbackUrl: "/" });
+    };
     return (
         <Navbar expand="none" className="bg-danger mb-3" collapseOnSelect>
             <Container fluid>
@@ -27,11 +35,16 @@ const DashboardHeader = () => {
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
                             {menuItems.map((item) => (
-                               <Nav.Link key={item.id} 
-                               active={pathName===item.url}
-                               href={item.url} as={Link}>{item.title}</Nav.Link> 
+                                <Nav.Link
+                                    key={item.id}
+                                    href={item.url}
+                                    as={Link}
+                                    active={pathname === item.url}
+                                >
+                                    {item.title}
+                                </Nav.Link>
                             ))}
-                            
+                            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
                         </Nav>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
